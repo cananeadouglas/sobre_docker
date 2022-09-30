@@ -1,0 +1,50 @@
+version: '3.9'
+services:
+  
+  apache-services: 
+    container_name: public-web
+    image: httpd:latest
+    ports: 
+      - "80:80"
+    volumes:
+      - $PWD/website:/usr/local/apache2/htdocs
+      
+  nginx-service:
+    container_name: nginx-app
+    image: nginx:latest
+    ports: 
+      - "99:80"
+  
+  tomcat-service:
+    container_name: java-web-app
+    image: tomcat:latest
+    ports:
+      - "8080:80"
+  
+  mysql-service:
+    container_name: mysql-app
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: douglas
+      MYSQL_PASSWORD: douglas
+      MYSQL_DATABASE: meu_banco
+    volumes:
+      - /var/lib/mysql
+  
+  phpmyadmin-service:
+    container_name: phpmyadmin-web-app
+    image: phpmyadmin
+    ports:
+      - 8181:80
+    depends_on:
+      - mysql-service
+    environment:
+      PMA_HOST: mysql-service
+      PMA_PORT: 3306
+      PMA_USER: douglas
+      PMA_PASSWORD: douglas
+
+

@@ -1,0 +1,63 @@
+version: '3.9'
+
+networks:
+  _net:
+    driver: bridge
+
+volumes:
+  php:
+  mysql:
+
+services:
+
+  mysql:
+    image: mysql:8.0.30
+    container_name: mysql
+    networks:
+      - _net
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpwd
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpresspwd
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - mysql:/var/lib/mysql
+
+  apache:
+      image: httpd:latest
+      container_name: public-web
+      ports:
+        - '80:80'
+        - '443:8443'
+      volumes:
+        - $PWD/:/var/www/html
+        - ~/.ssh/id_rsa:/root/.ssh/id_rsa
+      command: 
+        - bash
+        - -c
+        - >
+          apt-get update;
+          apt-get install git -y;
+          ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts;
+          git clone git@github.com:cananeadouglas/cananeadouglas.github.io.git;
+      environment:
+        XDEBUG_CONFIG: "remote_enable=1 remote_host=192.168.15.21 remote_port=8081 remote_autostart=1"
+      depends_on:
+        - mysql
+      links:
+        - mysql
+  
+  web-phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - 8181:80
+    networks:
+      - _net
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: wordpress
+      PMA_PASSWORD: wordpresspwd
