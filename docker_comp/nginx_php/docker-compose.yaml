@@ -1,0 +1,18 @@
+---
+nginx:
+  build: "$PWD"
+  container_name: nginx
+  restart: always
+  ports:
+    - "80:80"
+  links:
+    - php
+  volumes:
+    - "$PWD/website/:/var/www/html/"
+php:
+  image: php:7.0-fpm
+  container_name: php
+  expose:
+    - "9000"
+  volumes:
+    - "$PWD/website/:/var/www/html/"

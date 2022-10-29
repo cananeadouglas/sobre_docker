@@ -7,13 +7,23 @@ services:
     ports: 
       - "80:80"
     volumes:
-      - $PWD/website:/usr/local/apache2/htdocs
+      - $PWD/website/:/usr/local/apache2/htdocs
       
   nginx-service:
     container_name: nginx-app
     image: nginx:latest
     ports: 
       - "99:80"
+    volumes:
+      - "$PWD/website/:/var/www/html/"
+  
+  php:
+    container_name: php-app
+    image: php:7.4-fpm
+    expose:
+      - "9000"
+    volumes:
+      - "$PWD/website/:/var/www/html/"
   
   tomcat-service:
     container_name: java-web-app
