@@ -12,7 +12,8 @@ services:
     volumes:
       - /path/to/library:/config
       - /path/to/tvseries:/data/tvshows
-      - /path/to/movies:/data/movies
+      - /mnt/d/videos_HD_externo/Films_e_Serials/O_conto_da_aia:/data/movies
+      # - /path/to/movies:/data/movies
     ports:
       - 8096:8096
         #- 8920:8920 #optional
