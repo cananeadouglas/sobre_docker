@@ -1,0 +1,1 @@
+select first_name, country from soccer_players join national_team on soccer_players.id = national_team.id;
