@@ -1,2 +1,3 @@
-docker_comp/jenkins/jenkins/*
+/docker_comp/jenkins/jenkins/*
 */portainer-data/*
+/docker_comp/cups/arquivos/*

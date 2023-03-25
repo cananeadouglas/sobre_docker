@@ -31,7 +31,7 @@ INSERT INTO national_team (country) VALUES ('Croatia');
 INSERT INTO national_team (country) VALUES ('Brazil');
 INSERT INTO national_team (country) VALUES ('Argentinia');
 
-INSERT INTO soccer_players (first_name, last_name, national_team_id, games_played) VALUES ('Gianfranco', 'Zola', 1, 35);
+INSERT INTO soccer_players (first_name, last_name, national_team_id, games_played) VALUES ('Gianfránco', 'Zola', 1, 35);
 INSERT INTO soccer_players (first_name, last_name, national_team_id, games_played) VALUES ('Virgil', 'van Dijk', 2, 53);
 INSERT INTO soccer_players (first_name, last_name, national_team_id, games_played) VALUES ('Marcus', 'Rashford', 3, 51);
 INSERT INTO soccer_players (first_name, last_name, national_team_id, games_played) VALUES ('kylian', 'Mbappé', 5, 66);

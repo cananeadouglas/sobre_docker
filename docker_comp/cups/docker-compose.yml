@@ -1,0 +1,18 @@
+---
+services:
+  cups:
+    build:
+      context: ./
+    container_name: cupsd
+    restart: always
+    ports:
+      - 631:631
+    volumes:
+      - /var/run/dbus:/var/run/dbus
+      - $PWD/cupsd.conf:/etc/cups/cupsd.conf
+      - $PWD/arquivos:/home/print/PDF
+    environment:
+    - CUPS_USER_ADMIN=admin
+    - CUPS_USER_PASSWORD=admin
+    #devices:
+    #- "${PRINTER_ADDRESS}"
