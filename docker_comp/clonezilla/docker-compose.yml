@@ -1,0 +1,23 @@
+version: '2'
+
+volumes:
+  data:
+  logs:
+
+services:
+  app:
+    image: theniwo/clonezilla:latest
+    container_name: clonezilla
+    hostname: clonezilla
+    mem_limit: "2G"
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - "2222:22"
+    environment:
+      - TERM=xterm
+    volumes:
+      - /dev:/dev
+      - $PWD/data:/home/partimag:shared
+      - data:/root
+      - logs:/var/log
