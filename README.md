@@ -8,4 +8,6 @@ Projetos em ordem:
 
 [Apache, PHP, mariaDb e phpmyadmin](./docker_comp/apache-php_mariadb_phpmyadmin/)
 
-[bind9 DNS - não concluido](./docker_comp/bind9-dns/)
+[bind9 DNS - não concluído](./docker_comp/bind9-dns/)
+
+[Blockchain Ethereum - não cncluído](./docker_file/blockchain_ether/Dockerfile)
