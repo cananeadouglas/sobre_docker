@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+
+    kavita:
+        image: kizaing/kavita:latest
+        container_name: kavita
+        privileged: true
+        volumes:
+            - ./manga:/manga
+            - ./comics:/comics
+            - ./books:/books
+            - ./data:/kavita/config
+        environment:
+            - TZ=Europe/Madrid            
+        ports:
+            - "8200:5000"
+        restart: unless-stopped

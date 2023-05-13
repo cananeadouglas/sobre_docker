@@ -10,4 +10,4 @@ Projetos em ordem:
 
 [bind9 DNS - não concluído](./docker_comp/bind9-dns/)
 
-[Blockchain Ethereum - não cncluído](./docker_file/blockchain_ether/Dockerfile)
+[Blockchain Ethereum - não cncluído](./docker_file/blockchain_ether/)
