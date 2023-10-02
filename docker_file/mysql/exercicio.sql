@@ -39,4 +39,3 @@ INSERT INTO soccer_players (first_name, last_name, national_team_id, games_playe
 INSERT INTO soccer_players (first_name, last_name, national_team_id, games_played) VALUES ('Frenkie', 'de Jong', 2, 22);
 INSERT INTO soccer_players (first_name, last_name, national_team_id, games_played) VALUES ('Mario', 'Balotelli', 1, 36);
 INSERT INTO soccer_players (first_name, last_name, national_team_id, games_played) VALUES ('Erling', 'Haaland', 6, 23);
-

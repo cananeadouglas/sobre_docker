@@ -1,3 +1,6 @@
 /docker_comp/jenkins/jenkins/*
 */portainer-data/*
 /docker_comp/cups/arquivos/*
+/docker_comp/nextcloud/db/*
+/docker_comp/nextcloud/nextcloud/*
+/docker_file/node_js/node_modules/*
