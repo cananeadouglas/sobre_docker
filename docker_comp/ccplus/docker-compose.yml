@@ -1,0 +1,9 @@
+version: '3'
+services:
+  c-dev:
+    image: gcc
+    container_name: my-c-dev
+    volumes:
+      - ./code:/code
+    tty: true
+
