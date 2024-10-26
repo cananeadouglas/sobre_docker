@@ -1,0 +1,18 @@
+# Use uma imagem base do Linux
+FROM ubuntu:latest
+
+# Atualize o sistema e instale as dependências
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \ 
+    ghc \             
+    cabal-install     
+
+# Defina o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copie os arquivos do host para o contêiner
+COPY /app* /app
+
+# Comando padrão a ser executado quando o contêiner for iniciado
+CMD ["/bin/bash"]

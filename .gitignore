@@ -4,3 +4,4 @@
 /docker_comp/nextcloud/db/*
 /docker_comp/nextcloud/nextcloud/*
 /docker_file/node_js/node_modules/*
+docker_comp/portainer/portainer-data/*

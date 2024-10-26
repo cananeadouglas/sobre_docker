@@ -1,0 +1,37 @@
+FROM ubuntu:jammy
+
+LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
+
+ENV LUA_VERSION="5.4.7"
+ENV SHA2_CHECKSUM="9fbf5e28ef86c69858f6d3d34eccc32e911c1a28b4120ff3e84aaa70cfbf1e30"
+
+RUN set -ex \
+    \
+    && apt_marks="$(apt-mark showmanual)" \
+    \
+    && apt-get update \
+    && apt-get -y dist-upgrade \
+    && apt-get -y install \
+        libreadline-dev \
+        make \
+        gcc \
+        wget \
+    \
+    && wget -O lua.tar.gz -c https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz \
+    && [ "$(sha256sum lua.tar.gz | cut -d' ' -f1)" = "${SHA2_CHECKSUM}" ] \
+    && tar -xzf lua.tar.gz \
+    && rm lua.tar.gz \
+    && cd lua-${LUA_VERSION} \
+    && make -j"$(nproc)" linux \
+    && make install \
+    && cd .. \
+    \
+    && apt-mark auto '.*' > /dev/null \
+    && apt-mark manual $apt_marks \
+    && dpkg-query --showformat='${Package}\n' --show | grep -E '^libreadline[[:digit:]]+$' | xargs apt-mark manual \
+    && apt-get -y purge --autoremove -o APT::AutoRemove::RecommendsImportant=false \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf lua-${LUA_VERSION}
+
+
+CMD ["lua"]

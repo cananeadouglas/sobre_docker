@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+
+  mysql:
+    container_name: mysql
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: p4ssw0rd
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  espocrm:
+    container_name: espocrm
+    image: espocrm/espocrm
+    environment:
+      ESPOCRM_DATABASE_PASSWORD: p4ssw0rd
+      ESPOCRM_ADMIN_USERNAME: admin
+      ESPOCRM_ADMIN_PASSWORD: p4ssw0rd
+      ESPOCRM_SITE_URL: "http://localhost:8200"
+    restart: unless-stopped
+    ports:
+      - "8200:80"
+    volumes:
+     - ./espocrm:/var/www/html
+
+  espocrm-daemon:
+    image: espocrm/espocrm
+    volumes:
+     - ./espocrm:/var/www/html
+    restart: unless-stopped
+    entrypoint: docker-daemon.sh
+

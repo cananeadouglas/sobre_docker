@@ -9,6 +9,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     git \
     unzip \
     nano \
+    stress \
     && apt-get clean
 
 # Adicione comandos aqui para instalar outros pacotes e software
